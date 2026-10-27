@@ -21,9 +21,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
     - name: Test
-      run: |
-        python3 main.py
+      run: python3 main.py
       env:
         userIds: ${{ secrets.GAME_USERIDS }}
         authKeys: ${{ secrets.GAME_AUTHKEYS }}
